@@ -22,7 +22,11 @@ export function CharacterCard({ character }: CharacterCardProps) {
   };
 
   return (
-    <div className="overflow-hidden bg-black shadow-md" role="listitem" data-testid={`character-card-${character.id}`}>
+    <div
+      className="overflow-hidden bg-black shadow-md"
+      role="listitem"
+      data-testid={`character-card-${character.id}`}
+    >
       <h2 className="py-4 text-center text-xl font-semibold text-white">{character.name}</h2>
       <div className="relative mx-auto h-96 w-80">
         <Link href={`/character/${character.id}`} passHref>
@@ -41,7 +45,11 @@ export function CharacterCard({ character }: CharacterCardProps) {
         } mx-auto block text-white hover:bg-blue-600`}
         onClick={handleFavorite}
         aria-pressed={isFavorited}
-        aria-label={isFavorited ? `Remove ${character.name} from favorites` : `Add ${character.name} to favorites`}
+        aria-label={
+          isFavorited
+            ? `Remove ${character.name} from favorites`
+            : `Add ${character.name} to favorites`
+        }
       >
         {isFavorited ? 'Unfavorite' : 'Favorite'}
       </button>
