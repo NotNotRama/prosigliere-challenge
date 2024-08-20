@@ -1,9 +1,12 @@
+import { House } from '@/hooks/useHouse';
 import Link from 'next/link';
-import { House, useHouse } from '@/context/HouseContext';
 
-export function Navbar() {
-  const { house, setHouse } = useHouse();
+type NavbarProps = {
+  house: House;
+  setHouse: (newHouse: House | null) => void;
+};
 
+export function Navbar({ house, setHouse }: NavbarProps) {
   return (
     <nav className="flex justify-between p-4" aria-label="Main Navigation">
       <ul className="flex gap-5">
