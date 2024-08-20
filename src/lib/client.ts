@@ -39,5 +39,5 @@ export const client = {
   getStudents: (): Promise<Character[]> =>
     axios.get(`${baseUrl}/characters/students`).then((res) => res.data),
   getCharacter: (id: string): Promise<Character> =>
-    axios.get(`${baseUrl}/character/${id}`).then((res) => res.data),
+    axios.get(`${baseUrl}/character/${id}`).then((res) => res.data[0]),
 };
