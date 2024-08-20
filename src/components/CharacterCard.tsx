@@ -18,7 +18,7 @@ const isValidImageSrc = (src: string) => {
 function CharacterCard({ character }: CharacterCardProps) {
   return (
     <div
-      className="shadow-md overflow-hidden  bg-black"
+      className="shadow-md bg-black"
       role="listitem"
       data-testid={`character-card-${character.id}`}
     >
