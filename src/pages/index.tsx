@@ -12,7 +12,7 @@ export default function Home() {
   return <Layout characters={characters} title="HD Characters" />;
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export async function getStaticProps() {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
@@ -25,4 +25,4 @@ export const getStaticProps: GetStaticProps = async () => {
     },
     revalidate: 3600,
   };
-};
+}
