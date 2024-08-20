@@ -1,11 +1,11 @@
 import React from 'react';
 
 import { useAllCharacters } from '@/lib/react-query/useAllCharacters';
-import CharacterCard from '@/components/CharacterCard';
+import { CharacterCard } from '@/components/CharacterCard';
 import { useFavorites } from '@/context/FavoritesContext';
 import { QueryClient } from '@tanstack/react-query';
 
-export default function FavouritesPage(): JSX.Element {
+export default function FavouritesPage() {
   const { data: characters, error } = useAllCharacters();
 
   const { favorites } = useFavorites();
@@ -33,6 +33,7 @@ export default function FavouritesPage(): JSX.Element {
 
 import { dehydrate } from '@tanstack/react-query';
 import { client } from '@/lib/client';
+import { revalidateDuration } from '@/utils';
 
 export async function getStaticProps() {
   const queryClient = new QueryClient();
@@ -45,6 +46,6 @@ export async function getStaticProps() {
     props: {
       dehydratedState: dehydrate(queryClient),
     },
-    revalidate: 3600,
+    revalidate: revalidateDuration,
   };
 }

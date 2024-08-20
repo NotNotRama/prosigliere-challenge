@@ -4,6 +4,7 @@ import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { client } from '@/lib/client';
 import { useAllCharacters } from '@/lib/react-query/useAllCharacters';
 import { Layout } from '@/components/Layout';
+import { revalidateDuration } from '@/utils';
 
 export default function Home() {
   const { data: characters, error } = useAllCharacters();
@@ -23,6 +24,6 @@ export async function getStaticProps() {
     props: {
       dehydratedState: dehydrate(queryClient),
     },
-    revalidate: 3600,
+    revalidate: revalidateDuration,
   };
 }

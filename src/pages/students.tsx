@@ -1,9 +1,9 @@
 import { client } from '@/lib/client';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { GetStaticProps } from 'next';
-import CharacterCard from '@/components/CharacterCard';
 import { useStudents } from '@/lib/react-query/useStudents';
 import { Layout } from '@/components/Layout';
+import { revalidateDuration } from '@/utils';
 
 export default function Staff() {
   const { data: characters, error } = useStudents();
@@ -24,6 +24,6 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       dehydratedState: dehydrate(queryClient),
     },
-    revalidate: 3600,
+    revalidate: revalidateDuration,
   };
 };
