@@ -3,21 +3,13 @@ import { Character } from '@/lib/client';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useFavorites } from '@/context/FavoritesContext';
+import { isValidImageSrc } from '@/utils';
 
 interface CharacterCardProps {
   character: Character;
 }
 
-const isValidImageSrc = (src: string) => {
-  try {
-    new URL(src);
-    return true;
-  } catch {
-    return false;
-  }
-};
-
-function CharacterCard({ character }: CharacterCardProps): JSX.Element {
+export function CharacterCard({ character }: CharacterCardProps) {
   const { favorites, addFavorite, removeFavorite } = useFavorites();
   const isFavorited = favorites.includes(character.id);
 
@@ -56,5 +48,3 @@ function CharacterCard({ character }: CharacterCardProps): JSX.Element {
     </div>
   );
 }
-
-export default CharacterCard;

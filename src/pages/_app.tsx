@@ -26,7 +26,6 @@ export default function App(appProps: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={true} />
-
       <FavoritesProvider>
         <HydrationBoundary state={appProps.pageProps.dehydratedState}>
           <AppContent {...appProps} />

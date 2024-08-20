@@ -8,15 +8,15 @@ interface FavoritesContextProps {
 
 const FavoritesContext = createContext<FavoritesContextProps | undefined>(undefined);
 
-export const useFavorites = () => {
+export function useFavorites() {
   const context = useContext(FavoritesContext);
   if (!context) {
     throw new Error('useFavorites must be used within a FavoritesProvider');
   }
   return context;
-};
+}
 
-export const FavoritesProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export function FavoritesProvider({ children }: { children: React.ReactNode }) {
   const [favorites, setFavorites] = useState<string[]>([]);
 
   useEffect(() => {
@@ -45,4 +45,4 @@ export const FavoritesProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   return (
     <FavoritesContext.Provider value={{ favorites, addFavorite, removeFavorite }}>{children}</FavoritesContext.Provider>
   );
-};
+}

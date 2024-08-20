@@ -1,5 +1,5 @@
 import { Character } from '@/lib/client';
-import CharacterCard from './CharacterCard';
+import { CharacterCard } from './CharacterCard';
 
 type LayoutProps = {
   characters: Character[] | undefined;

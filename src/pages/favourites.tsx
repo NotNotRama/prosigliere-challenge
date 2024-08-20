@@ -6,12 +6,9 @@ import { useFavorites } from '@/context/FavoritesContext';
 import { QueryClient } from '@tanstack/react-query';
 
 export default function FavouritesPage(): JSX.Element {
-  const { data: characters, isLoading, error } = useAllCharacters();
-  console.log('characters', characters);
-  const { favorites } = useFavorites();
-  console.log('favorites', favorites);
+  const { data: characters, error } = useAllCharacters();
 
-  if (isLoading) return <div>Loading...</div>;
+  const { favorites } = useFavorites();
 
   if (error) return <div>An error occurred: {(error as Error).message}</div>;
 
