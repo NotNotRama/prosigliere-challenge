@@ -5,10 +5,15 @@ import { HydrationBoundary, QueryClient, QueryClientProvider } from '@tanstack/r
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Navbar } from '@/components/Navbar';
 import { FavoritesProvider } from '@/context/FavoritesContext';
+import { HouseProvider, useHouse } from '@/context/HouseContext';
 
 function AppContent({ Component, pageProps }: AppProps) {
+  const { house } = useHouse();
+
+  const houseThemeClass = house ? `theme-${house}` : '';
+
   return (
-    <div className="min-h-screen">
+    <div className={`min-h-screen ${houseThemeClass}`}>
       <Navbar />
       <Component {...pageProps} />
     </div>
@@ -21,11 +26,13 @@ export default function App(appProps: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={true} />
-      <FavoritesProvider>
-        <HydrationBoundary state={appProps.pageProps.dehydratedState}>
-          <AppContent {...appProps} />
-        </HydrationBoundary>
-      </FavoritesProvider>
+      <HouseProvider>
+        <FavoritesProvider>
+          <HydrationBoundary state={appProps.pageProps.dehydratedState}>
+            <AppContent {...appProps} />
+          </HydrationBoundary>
+        </FavoritesProvider>
+      </HouseProvider>
     </QueryClientProvider>
   );
 }
