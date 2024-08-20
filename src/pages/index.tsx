@@ -1,12 +1,9 @@
-import Image from 'next/image';
 import { Inter } from 'next/font/google';
 import { GetStaticProps } from 'next';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { client } from '@/lib/client';
 import { useAllCharacters } from '@/lib/react-query/useAllCharacters';
 import { Layout } from '@/components/Layout';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export default function Home() {
   const { data: characters, error } = useAllCharacters();

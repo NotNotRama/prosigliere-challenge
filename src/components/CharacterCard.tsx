@@ -17,25 +17,14 @@ const isValidImageSrc = (src: string) => {
 
 function CharacterCard({ character }: CharacterCardProps) {
   return (
-    <div
-      className="shadow-md bg-black"
-      role="listitem"
-      data-testid={`character-card-${character.id}`}
-    >
-      <h2 className="text-xl py-4 text-white font-semibold text-center">
-        {character.name}
-      </h2>
-      <div className="relative w-80 h-96 mx-auto">
+    <div className="bg-black shadow-md" role="listitem" data-testid={`character-card-${character.id}`}>
+      <h2 className="py-4 text-center text-xl font-semibold text-white">{character.name}</h2>
+      <div className="relative mx-auto h-96 w-80">
         <Link href={`/character/${character.id}`} passHref>
           {isValidImageSrc(character.image) ? (
-            <Image
-              src={character.image}
-              alt={character.name}
-              layout="fill"
-              objectPosition="top"
-            />
+            <Image src={character.image} alt={character.name} layout="fill" objectPosition="top" />
           ) : (
-            <div className="w-full h-full flex items-center justify-center bg-gray-200 text-gray-500">
+            <div className="flex h-full w-full items-center justify-center bg-gray-200 text-gray-500">
               No Image Available
             </div>
           )}
