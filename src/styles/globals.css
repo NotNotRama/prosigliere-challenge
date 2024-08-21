@@ -18,7 +18,8 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb)))
+    rgb(var(--background-start-rgb));
 }
 
 @layer utilities {
@@ -29,20 +30,20 @@ body {
 
 .theme-gryffindor {
   --background: 194, 155, 48;
-  --text: 110, 3, 0;
+  --text: 94, 5, 3;
 }
 
 .theme-slytherin {
-  --background: 43, 152, 46;
-  --text: 12, 59, 44;
+  --background: 59, 148, 61;
+  --text: 5, 50, 35;
 }
 
 .theme-hufflepuff {
-  --background: 255, 236, 139;
-  --text: 196, 162, 13;
+  --background: 255, 230, 100;
+  --text: 157, 129, 6;
 }
 
 .theme-ravenclaw {
-  --background: 42, 40, 160;
-  --text: 10, 5, 99;
+  --background: 51, 95, 167;
+  --text: 25, 21, 90;
 }
