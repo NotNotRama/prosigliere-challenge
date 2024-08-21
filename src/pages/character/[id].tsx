@@ -11,7 +11,7 @@ export default function CharacterDetail() {
   if (!character) return <div>Loading</div>;
 
   return (
-    <main className="bg-theme-background text-theme-text min-h-screen">
+    <main className="min-h-screen bg-theme-background">
       <div className="flex flex-col items-center p-8">
         <h1 className="mb-8 text-center text-4xl font-bold">{character.name}</h1>
         <div className="flex flex-col gap-5 md:flex-row">
@@ -25,7 +25,7 @@ export default function CharacterDetail() {
               className="rounded-lg shadow-lg"
             />
           </div>
-          <div className="rounded-lg bg-white bg-opacity-90 p-6 shadow-lg">
+          <div className="rounded-lg bg-white bg-opacity-90 p-6 text-black shadow-lg">
             <CharacterInfo label="Species" value={character.species} />
             <CharacterInfo label="Gender" value={character.gender} />
             <CharacterInfo label="House" value={character.house} />
