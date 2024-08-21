@@ -1,4 +1,4 @@
-# Prosgliere challenge
+# Prosigliere challenge
 
 Link to the challenge instructions https://github.com/Prosigliere/coding-challenges/blob/main/frontend.md
 
