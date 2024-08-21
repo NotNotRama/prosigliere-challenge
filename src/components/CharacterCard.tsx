@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useFavorites } from '@/context/FavoritesContext';
 import { isValidImageSrc } from '@/utils';
+import clsx from 'clsx';
 
 interface CharacterCardProps {
   character: Character;
@@ -40,9 +41,10 @@ export function CharacterCard({ character }: CharacterCardProps) {
         </Link>
       </div>
       <button
-        className={`w-80 py-2 ${
-          isFavorited ? 'bg-gray-500' : 'bg-blue-500'
-        } mx-auto block text-white hover:bg-blue-600`}
+        className={clsx(
+          'mx-auto block w-80 py-2 text-white hover:bg-blue-600',
+          isFavorited ? 'bg-gray-500' : 'bg-blue-500',
+        )}
         onClick={handleFavorite}
         aria-pressed={isFavorited}
         aria-label={
