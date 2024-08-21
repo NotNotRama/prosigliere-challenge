@@ -15,7 +15,7 @@ export default function FavouritesPage() {
   const favoritedCharacters = characters?.filter((character) => favorites.includes(character.id));
 
   return (
-    <main className="min-h-screen p-8">
+    <main className="min-h-screen bg-theme-background p-8 text-theme-text">
       <h1 className="mb-8 text-center text-3xl font-bold">My Favourites</h1>
 
       {favoritedCharacters && favoritedCharacters.length > 0 ? (
