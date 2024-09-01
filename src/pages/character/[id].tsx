@@ -1,14 +1,11 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
 import Image from 'next/image';
-import { client } from '@/lib/client';
+import { Character, client } from '@/lib/client';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
-import { useCharacter } from '@/lib/react-query/useCharacter';
 import { revalidateDuration } from '@/utils';
 
-export default function CharacterDetail() {
-  const { data: character, error } = useCharacter();
-  if (error) return <div>An error occurred: {(error as Error).message}</div>;
-  if (!character) return <div>Loading</div>;
+export default function CharacterDetail({ character }: { character: Character }) {
+  if (!character) return <div>Character not found</div>;
 
   return (
     <main className="min-h-screen bg-theme-background">
@@ -64,12 +61,18 @@ function CharacterInfo({ label, value }: { label: string; value: string }) {
   );
 }
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
+  const characters = await client.getAllCharacters();
+
+  const paths = characters.map((character) => ({
+    params: { id: character.id },
+  }));
+
   return {
-    paths: [],
-    fallback: 'blocking',
+    paths,
+    fallback: true,
   };
-}
+};
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const queryClient = new QueryClient();
@@ -81,13 +84,18 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     };
   }
 
-  await queryClient.prefetchQuery({
-    queryKey: ['character'],
-    queryFn: () => client.getCharacter(params.id as string),
-  });
+  const character = await client.getCharacter(params.id as string);
+
+  if (!character) {
+    return {
+      notFound: true,
+      revalidate: revalidateDuration,
+    };
+  }
   return {
     props: {
       dehydratedState: dehydrate(queryClient),
+      character,
     },
     revalidate: revalidateDuration,
   };
