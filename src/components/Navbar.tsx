@@ -17,12 +17,7 @@ export function Navbar({ house, setHouse }: NavbarProps) {
   return (
     <nav className="relative flex justify-between p-4" aria-label="Main Navigation">
       <div className="flex flex-col md:hidden">
-        <button
-          className={` ${isMenuOpen ? '' : 'flex'}`}
-          onClick={toggleMenu}
-          aria-label="Toggle Main Navigation"
-          aria-expanded={isMenuOpen}
-        >
+        <button onClick={toggleMenu} aria-label="Toggle Main Navigation" aria-expanded={isMenuOpen}>
           <svg
             className="h-6 w-6"
             fill="none"
