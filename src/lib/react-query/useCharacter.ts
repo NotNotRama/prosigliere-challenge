@@ -1,14 +1,10 @@
 import { useQuery, UseQueryOptions } from '@tanstack/react-query';
 import { client, Character } from '@/lib/client';
-import { useRouter } from 'next/router';
 
-export const useCharacter = (queryOptions?: UseQueryOptions<Character, Error>) => {
-  const router = useRouter();
-  const { id } = router.query;
-
+export const useCharacter = (id: string, queryOptions?: UseQueryOptions<Character, Error>) => {
   return useQuery({
     queryKey: ['character', id],
-    queryFn: () => client.getCharacter(id as string),
+    queryFn: () => client.getCharacter(id),
     enabled: !!id,
     ...queryOptions,
   });
